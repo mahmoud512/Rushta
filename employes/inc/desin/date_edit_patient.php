@@ -1,0 +1,26 @@
+<?php
+$id = $_GET['id'];
+
+$sql = "SELECT * FROM `revealed` WHERE id = $id";
+$result = $con->query($sql);
+while ($row = $result->fetch_assoc()) {
+?>
+<form action="inc/fun/bo_edit_patient.php" method="POST">
+  <div class="mb-3 mt-3">
+    <label for="ststus" class="form-label">status :</label>
+    <select name="status" id="ststus" class="form-control">
+      <?php
+    $sql = "SELECT * FROM ststus";
+    $result = $con->query($sql);
+    while ($row = $result->fetch_assoc()) {
+      ?>
+<option value="<?=$row['id'] ?>"><?=$row['name'] ?></option>
+      <?php
+    }
+      ?>
+    </select>
+    <input type="hidden" name="id" value="<?=$id?>">
+  </div>
+  <input type="submit" class="btn btn-primary mb-3 pl-5 pr-5" value="SAVE">
+</form> 
+<?php } ?>
